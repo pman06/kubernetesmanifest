@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: flask-demo
+
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5,9 +12,9 @@ metadata:
   labels:
     app: flaskdemo
   name: flaskdemo
-  namespace: default
+  namespace: flask-demo
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: flaskdemo
@@ -28,7 +35,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: lb-service
-  namespace: default
+  namespace: flask-demo
   labels:
     app: lb-service
 spec:
